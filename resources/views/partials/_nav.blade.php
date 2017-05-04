@@ -9,33 +9,33 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Laravel Blog</a>
+      <a class="navbar-brand" href="/">Proyecto Sintesis</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Home</a></li>
+        <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Inicio</a></li>
         <li class="{{Request::is('blog') ? "active" : ""}}"><a href="{{route('blog.index')}}">Blog</a></li>
-        <li class="{{Request::is('about') ? "active" : ""}}"><a href="/about">About</a></li>
-        <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
+        <li class="{{Request::is('about') ? "active" : ""}}"><a href="/about">Informacion</a></li>
+        <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contactar</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
             <li class="dropdown">
-              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello: {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido!: {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{{route('posts.index')}}">Posts</a></li>
-                <li><a href="{{route('categories.index')}}">Categories</a></li>
-                <li><a href="{{route('tags.index')}}">Tags</a></li>
+                <li><a href="{{route('categories.index')}}">Categorias</a></li>
+                <li><a href="{{route('tags.index')}}">Hagstags</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="{{route('logout')}}">Logout</a></li>
+                <li><a href="{{route('logout')}}">Desconectarte</a></li>
               </ul>
             </li>
         @else
             <ul class="nav navbar-nav">
-              <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Login</a></li>
-              <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Sign Up</a></li>
+              <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Entrar</a></li>
+              <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Registrarte</a></li>
             </ul>
         @endif
 
