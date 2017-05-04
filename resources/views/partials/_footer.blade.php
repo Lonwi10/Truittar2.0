@@ -1,2 +1,2 @@
 <hr>
-<p class="text-center">Copyright Pei-Hsuan Chou - All Rights Reserved</p>
+<p class="text-center">Copyright Truittar - All Rights Reserved</p>

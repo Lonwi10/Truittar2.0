@@ -10,21 +10,15 @@ use Session;
 class PagesController extends Controller
 {
     public function getIndex() {
-        # process variable data or params
-        # talk to the model
-        # recieve from the model
-        # compile or process data from the model if needed
-        # pass that data to the correct view
+
         $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
         return view('pages.welcome')->withPosts($posts);
     }
     public function getAbout() {
-        $first = 'cora';
-        $last = 'chou';
+        $first = 'Grupo Sintesis';
+        $last = 'Josemi Tudela - Ian Lopez';
         $full = $first . "  " .$last;
-        //return view('pages.about')->with("fullname", $full);
-        $email = 'phchou220@gmail.com';
-        //return view('pages.about')->withFullname($full)->withEmail($email);
+        $email = 'lonwi.95@gmail.com';
         $data = [];
         $data['email'] = $email;
         $data['fullname'] = $full;
@@ -45,14 +39,11 @@ class PagesController extends Controller
             'email' => $request->email,
             'subject' => $request->subject,
             'bodyMessage' => $request->message
-            //'survey' = ['Q1' => 'hello', 'Q2' => 'YES']
         );
         Mail::send('emails.contact', $data, function($message) use ($data){
             $message->from($data['email']);
-            //$message->reply_to();
-            //$message->cc();
-            //$message->attach();
-            $message->to('phchou220@gmail.com');
+
+            $message->to('lonwi.95@gmail.com');
             $message->subject($data['subject']);
         });
 

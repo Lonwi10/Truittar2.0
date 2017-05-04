@@ -8,8 +8,8 @@
       <div class="row">
           <div class="col-md-12">
             <div class="jumbotron">
-                <h1>亂數假文產生器</h1>
-                <p class="lead">Thank you so much for visiting. This is my test website built with Laravel. Please read my latest post!</p>
+                <h1>Truittar </h1>
+                <p class="lead"></p>
             </div>
           </div>
       </div> <!-- end of header .row -->
