@@ -8,7 +8,7 @@
             <h1>{{$tag->name}} Tag <small>{{$tag->posts()->count()}} Posts</small></h1>
         </div>
         <div class="col-md-2">
-            <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-primary btn-block" style="margin-top: 20px;">Edit</a>
+            <a href="{{route('tags.edit', $tag->id)}}" class="btn btn-primary btn-block" style="margin-top: 20px;">Editar</a>
         </div>
         <div class="col-md-2">
             {{Form::open(['route' => ['tags.destroy', $tag->id], 'method' => 'DELETE'])}}
@@ -23,8 +23,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Tags</th>
+                        <th>Titulo</th>
+                        <th>Hastags</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -38,7 +38,7 @@
                                   <span class="label label-default">{{$tag->name}}</span>
                               @endforeach
                           </td>
-                          <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-default btn-xs">View</a></td>
+                          <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-default btn-xs">Ver</a></td>
                       </tr>
                     @endforeach
                 </tbody>
