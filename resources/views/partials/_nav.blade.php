@@ -9,32 +9,37 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+
       <a class="navbar-brand" href="/">Truittar</a>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Home</a></li>
+        <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Inicio</a></li>
         <li class="{{Request::is('blog') ? "active" : ""}}"><a href="{{route('blog.index')}}">Blog</a></li>
         <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
             <li class="dropdown">
-              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello: {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido!: {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{{route('posts.index')}}">Post</a></li>
                 <li><a href="{{route('categories.index')}}">Categorias</a></li>
                 <li><a href="{{route('tags.index')}}">Hashtags</a></li>
+
                 <li role="separator" class="divider"></li>
-                <li><a href="{{route('logout')}}">Logout</a></li>
+                <li><a href="{{route('logout')}}">Desconectarte</a></li>
               </ul>
             </li>
         @else
             <ul class="nav navbar-nav">
-              <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Logueate</a></li>
-              <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Registrate</a></li>
+
+              <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Entrar</a></li>
+              <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Registrarte</a></li>
             </ul>
         @endif
 

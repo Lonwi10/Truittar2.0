@@ -8,8 +8,10 @@
       <div class="row">
           <div class="col-md-12">
             <div class="jumbotron">
+
                 <h1>Truittar </h1>
                 <p class="lead"></p>
+
             </div>
           </div>
       </div> <!-- end of header .row -->
@@ -19,7 +21,7 @@
                   <div class="post">
                       <h3>{{$post->title}}</h3>
                       <p>{{substr(strip_tags($post->body), 0, 250)}}{{strlen(strip_tags($post->body)) > 250 ? "..." : ""}}</p>
-                      <a href="{{url('blog/'.$post->slug)}}" class="btn btn-primary">Read More</a>
+                      <a href="{{url('blog/'.$post->slug)}}" class="btn btn-primary">Leer mas!</a>
                   </div>
                   <hr>
               @endforeach

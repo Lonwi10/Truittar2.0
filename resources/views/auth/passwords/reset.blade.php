@@ -1,13 +1,13 @@
 @extends('main')
 
-@section('title', '| Forgot my Password')
+@section('title', '| Recuperar mi contraseña')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default">
-                  <div class="panel-heading">Reset Password</div>
+                  <div class="panel-heading">Reset contraseña</div>
                       <div class="panel-body">
                           {!!Form::open(['url' => 'password/reset', 'method' => "POST"])!!}
                               {{Form::hidden('token', $token)}}
