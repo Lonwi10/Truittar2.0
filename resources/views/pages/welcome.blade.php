@@ -8,8 +8,8 @@
       <div class="row">
           <div class="col-md-12">
             <div class="jumbotron">
-                <h1>亂數假文產生器</h1>
-                <p class="lead">Thank you so much for visiting. This is my test website built with Laravel. Please read my latest post!</p>
+                <h1>Proy.Sintesis  Josemi-Ian</h1>
+                <p class="lead">Sintesis creado en web con Laravel.Ian manda ya lo sabeis! </p>
             </div>
           </div>
       </div> <!-- end of header .row -->
@@ -19,7 +19,7 @@
                   <div class="post">
                       <h3>{{$post->title}}</h3>
                       <p>{{substr(strip_tags($post->body), 0, 250)}}{{strlen(strip_tags($post->body)) > 250 ? "..." : ""}}</p>
-                      <a href="{{url('blog/'.$post->slug)}}" class="btn btn-primary">Read More</a>
+                      <a href="{{url('blog/'.$post->slug)}}" class="btn btn-primary">Leer mas!</a>
                   </div>
                   <hr>
               @endforeach
