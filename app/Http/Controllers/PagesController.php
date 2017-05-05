@@ -19,11 +19,11 @@ class PagesController extends Controller
         return view('pages.welcome')->withPosts($posts);
     }
     public function getAbout() {
-        $first = 'cora';
-        $last = 'chou';
+        $first = 'Grupo';
+        $last = 'Sintesis';
         $full = $first . "  " .$last;
         //return view('pages.about')->with("fullname", $full);
-        $email = 'phchou220@gmail.com';
+        $email = 'truittarcontact@gmail.com';
         //return view('pages.about')->withFullname($full)->withEmail($email);
         $data = [];
         $data['email'] = $email;
@@ -52,11 +52,11 @@ class PagesController extends Controller
             //$message->reply_to();
             //$message->cc();
             //$message->attach();
-            $message->to('phchou220@gmail.com');
+            $message->to('truittarcontact@gmail.com');
             $message->subject($data['subject']);
         });
 
-        Session::flash('success', 'Your Email was Sent!');
+        Session::flash('Correcto', 'Tu mensaje ha sido enviado!');
         return redirect('/');
     }
 }
