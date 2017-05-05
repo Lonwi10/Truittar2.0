@@ -10,11 +10,7 @@ use Session;
 class PagesController extends Controller
 {
     public function getIndex() {
-        # process variable data or params
-        # talk to the model
-        # recieve from the model
-        # compile or process data from the model if needed
-        # pass that data to the correct view
+
         $posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
         return view('pages.welcome')->withPosts($posts);
     }
@@ -45,7 +41,6 @@ class PagesController extends Controller
             'email' => $request->email,
             'subject' => $request->subject,
             'bodyMessage' => $request->message
-            //'survey' = ['Q1' => 'hello', 'Q2' => 'YES']
         );
         Mail::send('emails.contact', $data, function($message) use ($data){
             $message->from($data['email']);

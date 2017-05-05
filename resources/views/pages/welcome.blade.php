@@ -8,8 +8,10 @@
       <div class="row">
           <div class="col-md-12">
             <div class="jumbotron">
-                <h1>Proy.Sintesis  Josemi-Ian</h1>
-                <p class="lead">Sintesis creado en web con Laravel.Ian manda ya lo sabeis! </p>
+
+                <h1>Truittar </h1>
+                <p class="lead"></p>
+
             </div>
           </div>
       </div> <!-- end of header .row -->

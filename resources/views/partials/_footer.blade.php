@@ -1,2 +1,3 @@
 <hr>
-<p class="text-center">Copyright LaravelProyectSintesis - Josemi - Ian</p>
+<p class="text-center">Copyright Truittar - All Rights Reserved</p>
+
