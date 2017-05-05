@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             {!!Form::open()!!}
-                {{Form::label('email', 'email:')}}
-                {{Form::email('email', null, ['class' => 'form-control'])}}
+                {{Form::label('username', 'Username:')}}
+                {{Form::username('username', null, ['class' => 'form-control'])}}
 
                 {{Form::label('password', 'Password:')}}
                 {{Form::password('password', ['class' => 'form-control'])}}
