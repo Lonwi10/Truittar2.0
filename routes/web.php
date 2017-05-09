@@ -29,5 +29,17 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('categories', 'CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'TagController', ['except' => ['create']]);
 });
+Route::get('/account', [
+    'uses' => 'UserController@getAccount',
+    'as' => 'account'
+]);
+Route::post('/updateaccount', [
+    'uses' => 'UserController@postSaveAccount',
+    'as' => 'account.save'
+]);
+Route::get('/userimage/{filename}', [
+    'uses' => 'UserController@getUserImage',
+    'as' => 'account.image'
+]);
 
 Auth::routes();

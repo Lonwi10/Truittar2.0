@@ -1,3 +1,5 @@
+
+
 <!-- Default Bootstrap Navbar -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -25,8 +27,14 @@
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
             <li class="dropdown">
-              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Bienvenido!: {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                @if (Storage::disk('local')->has(Auth::user()->username . '.jpg'))  
+                  <img src="{{ route('account.image', ['filename' => Auth::user()->username . '.jpg'])}}" width="40" height="40" alt="">
+                @endif
+               {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><a href="{{route('account')}}">Perfil</a></li>
+                <li role="separator" class="divider"></li>
                 <li><a href="{{route('posts.index')}}">Post</a></li>
                 <li><a href="{{route('categories.index')}}">Categorias</a></li>
                 <li><a href="{{route('tags.index')}}">Hashtags</a></li>

@@ -1,3 +1,4 @@
+
 @extends('main')
 
 <?php $titleTag = htmlspecialchars($post->title); ?>
@@ -24,7 +25,11 @@
             @foreach ($post->comments as $comment)
                   <div class="comment">
                       <div class="author-info">
+                        @if (Storage::disk('local')->has($comment->image))
+                          <img src="{{ route('account.image', ['filename' => $comment->image]) }}" width="40" height="40" alt="" class="author-name">
+                        @else
                           <img src="{{"https://www.gravatar.com/avatar/" . md5(strtolower(trim($comment->email))) . "?s=50&d=wavatar"}}" class="author-image">
+                        @endif
                           <div class="author-name">
                               <h4>{{$comment->name}}</h4>
                               <p class="author-time">{{date('F nS, Y - g:iA', strtotime($comment->created_at))}}</p>
@@ -45,12 +50,12 @@
                 <div class="row">
                     <div class="col-md-6">
                         {{Form::label('name', 'Name:')}}
-                        {{Form::text('name', null, ['class' => 'form-control'])}}
+                        {{Form::text('name', Auth::user()->username, ['class' => 'form-control', 'readonly'])}}
                     </div>
 
                     <div class="col-md-6">
                         {{Form::label('email', 'Email:')}}
-                        {{Form::text('email', null, ['class' => 'form-control'])}}
+                        {{Form::text('email', Auth::user()->email, ['class' => 'form-control', 'readonly'])}}
                     </div>
 
                     <div class="col-md-12">
