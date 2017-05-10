@@ -18,31 +18,33 @@
             <hr>
         </div>
     </div>
+   
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <h3 class="comments-title"> <span class="glyphicon glyphicon-comment"></span> {{$post->comments()->count()}} Comments</h3>
+              @foreach ($post->comments as $comment)
+                    <div class="comment">
+                        <div class="author-info">
+                          @if (Storage::disk('local')->has($comment->name . '.jpg'))
+                            <img src="{{ route('account.image', ['filename' => $comment->name . '.jpg']) }}" width="40" height="40" alt="" class="author-name">
+                          @else
+                            <img src="{{ route('account.image', ['filename' => 'guest' . '.jpg']) }}" width="40" height="40" alt="" class="author-name">
+                          @endif
+                            <div class="author-name">
+                                <h4>{{$comment->name}}</h4>
+                                <p class="author-time">{{date('F nS, Y - g:iA', strtotime($comment->created_at))}}</p>
+                            </div>
+                        </div>
+                        <div class="comment-content">
+                            {{$comment->comment}}
+                        </div>
+                    </div>
+              @endforeach
+              <hr>
+          </div>
+      </div>
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h3 class="comments-title"> <span class="glyphicon glyphicon-comment"></span> {{$post->comments()->count()}} Comments</h3>
-            @foreach ($post->comments as $comment)
-                  <div class="comment">
-                      <div class="author-info">
-                        @if (Storage::disk('local')->has($comment->image))
-                          <img src="{{ route('account.image', ['filename' => $comment->image]) }}" width="40" height="40" alt="" class="author-name">
-                        @else
-                          <img src="{{"https://www.gravatar.com/avatar/" . md5(strtolower(trim($comment->email))) . "?s=50&d=wavatar"}}" class="author-image">
-                        @endif
-                          <div class="author-name">
-                              <h4>{{$comment->name}}</h4>
-                              <p class="author-time">{{date('F nS, Y - g:iA', strtotime($comment->created_at))}}</p>
-                          </div>
-                      </div>
-                      <div class="comment-content">
-                          {{$comment->comment}}
-                      </div>
-                  </div>
-            @endforeach
-            <hr>
-        </div>
-    </div>
+  @if (Auth::check())
     <div class="row">
         <div id = "comment-form" class="col-md-8 col-md-offset-2">
             {{Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST'])}}
@@ -68,5 +70,17 @@
             {{Form::close()}}
         </div>
     </div>
+  @else
+    <div class="row">
+      <div id = "comment-form" class="col-md-8 col-md-offset-2">
+        <div class="row">
+          <div class="col-md-6">
+            <p> Solo usuarios registrados pueden comentar </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  @endif
 
 @endsection

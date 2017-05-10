@@ -30,6 +30,8 @@
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 @if (Storage::disk('local')->has(Auth::user()->username . '.jpg'))  
                   <img src="{{ route('account.image', ['filename' => Auth::user()->username . '.jpg'])}}" width="40" height="40" alt="">
+                @else
+                  <img src="{{ route('account.image', ['filename' =>'guest' . '.jpg'])}}" width="40" height="40" alt="">
                 @endif
                {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
