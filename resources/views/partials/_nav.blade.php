@@ -33,12 +33,11 @@
                 @else
                   <img src="{{ route('account.image', ['filename' =>'guest' . '.jpg'])}}" width="40" height="40" alt="">
                 @endif
-               {{Auth::user()->name}} , {{Auth::user()->email}}<span class="caret"></span></a>
+               <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="{{route('account')}}">Perfil</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{{route('posts.index')}}">Post</a></li>
-                <li><a href="{{route('categories.index')}}">Categorias</a></li>
                 <li><a href="{{route('tags.index')}}">Hashtags</a></li>
 
                 <li role="separator" class="divider"></li>

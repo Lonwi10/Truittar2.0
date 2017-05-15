@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Session;
-use App\Category;
 use App\Tag;
 use Purifier;
 use Image;
@@ -35,9 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
         $tags = Tag::all();
-        return view('posts.create')->withCategories($categories)->withTags($tags);
+        return view('posts.create')->withTags($tags);
     }
 
     /**
@@ -51,17 +49,11 @@ class PostController extends Controller
         //dd($request);
         // validate the data
         $this->validate($request, array(
-            'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'category_id' => 'required|integer',
             'body' => 'required',
             'featured_image' => 'sometimes|image'
         ));
         // store in the database
         $post = new Post;
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body);
 
         // save our image
@@ -80,7 +72,7 @@ class PostController extends Controller
 
         Session::flash('success', 'The blog post was successfully save!');
         // redirect to another page
-        return redirect()->route('posts.show', $post->id);
+        return redirect()->route('posts.show');
     }
 
     /**
@@ -91,9 +83,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
         //return view('posts.show')->with('post', $post);
-        return view('posts.show')->withPost($post);
+        return view('welcome');
     }
 
     /**
@@ -106,12 +97,8 @@ class PostController extends Controller
     {
         // find the post in the database and save as a var
         $post = Post::find($id);
-        $categories = Category::all();
 
         $cats = array();
-        foreach ($categories as $category) {
-            $cats[$category->id] = $category->name;
-        }
 
         $tags = Tag::all();
         $tags2 = array();
@@ -119,7 +106,7 @@ class PostController extends Controller
             $tags2[$tag->id] = $tag->name;
         }
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+        return view('posts.edit')->withPost($post)->withTags($tags2);
     }
 
     /**
@@ -135,18 +122,12 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $this->validate($request, array(
-            'title' => 'required|max:255',
-            'slug' => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
-            'category_id' => 'required|integer',
             'body' => 'required',
             'featured_image' => 'image'
         ));
 
         // Save the data to the database
         $post = Post::find($id);
-        $post->title = $request->input('title');
-        $post->slug = $request->input('slug');
-        $post->category_id = $request->input('category_id');
         $post->body = Purifier::clean($request->input('body'));
 
         if ($request->hasFile('featured_image')) {

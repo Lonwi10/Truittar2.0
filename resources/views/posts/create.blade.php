@@ -19,18 +19,6 @@
             <h1>Create New Post</h1>
             <hr>
             {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true)) !!}
-                {{Form::label('title', 'Title:')}}
-                {{Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255'))}}
-
-                {{Form::label('slug', 'Slug:')}}
-                {{Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255'))}}
-
-                {{Form::label('category_id', 'Category:')}}
-                <select class="form-control" name="category_id">
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
 
                 {{Form::label('tags', 'Tags:')}}
                 <select class="form-control select2-multi" name="tags[]" multiple="multiple">

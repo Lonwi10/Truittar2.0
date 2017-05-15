@@ -7,7 +7,6 @@
 
         <div class="col-md-8">
 
-            <h1>{{$post->title}}</h1>
             @if ($post->image && file_exists(public_path('images/'.$post->image)))
                     <img src="{{asset('images/' . $post->image)}}" height="400" width="600" alt="This is a photo">
             @endif
@@ -54,10 +53,6 @@
                 <dl class="dl-horizontal">
                     <label>Url:</label>
                     <p><a href="{{route('blog.single', $post->slug)}}">{{route('blog.single', $post->slug)}}</a></p>
-                </dl>
-                <dl class="dl-horizontal">
-                    <label>Category:</label>
-                    <p>{{$post->category->name}}</p>
                 </dl>
                 <dl class="dl-horizontal">
                     <label>Create At:</label>

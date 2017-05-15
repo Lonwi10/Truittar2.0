@@ -23,8 +23,6 @@
             {{Form::label('slug', 'Slug:', ['class' => 'form-spacing-top'])}}
             {{Form::text('slug', null, ['class' => 'form-control'])}}
 
-            {{Form::label('category', "Category:", ['class' => 'form-spacing-top'])}}
-            {{Form::select('category_id', $categories, null, ['class' => 'form-control'])}}
 
             {{Form::label('tags', "Tags:", ['class' => 'form-spacing-top'])}}
             {{Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple'])}}

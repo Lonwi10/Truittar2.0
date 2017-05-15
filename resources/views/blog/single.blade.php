@@ -1,4 +1,11 @@
+<style>
+  .col-md-8{
+    margin-left: 10px;
+    background-color: lightgrey;
+    width: 65%;
 
+  }
+</style>
 @extends('main')
 
 <?php $titleTag = htmlspecialchars($post->title); ?>
@@ -12,10 +19,7 @@
                     <img src="{{asset('images/' . $post->image)}}" height="400" width="600">
             @endif
             <p>{!!$post->body!!}</p>
-            <hr>
-            <p>Posted In: {{$post->category->name}}</p>
-            <!--<p>Posted In: {{$post->category->created_at}}</p>-->
-            <hr>
+
         </div>
     </div>
    

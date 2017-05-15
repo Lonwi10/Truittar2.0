@@ -3,7 +3,7 @@
 <head>
     @include('partials._head')
 </head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
     @include('partials._nav')
     <div class="container">

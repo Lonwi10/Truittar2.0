@@ -26,7 +26,6 @@ Route::get('comments/{id}/delete', 'CommentsController@delete')->name('comments.
 Route::get('logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('posts', 'PostController');
-    Route::resource('categories', 'CategoryController', ['except' => ['create']]);
     Route::resource('tags', 'TagController', ['except' => ['create']]);
 });
 Route::get('/account', [
