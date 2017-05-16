@@ -20,7 +20,6 @@
             <table class="table">
                 <thead>
                     <th>#</th>
-                    <th>Title</th>
                     <th>Body</th>
                     <th>Created At</th>
                     <th></th>
@@ -28,9 +27,9 @@
 
                 <tbody>
                     @foreach($posts as $post)
+                        
                         <tr>
                             <th>{{$post->id}}</th>
-                            <td>{{$post->title}}</td>
                             <td>{{substr(strip_tags($post->body), 0, 120)}}{{strlen(strip_tags($post->body)) > 120 ? "..." : ""}}</td>
                             <td>{{date('M j, Y', strtotime($post->created_at))}}</td>
                             <td><a href="{{route('posts.show', $post->id)}}" class="btn btn-default btn-sm">View</a> <a href="{{route('posts.edit', $post->id)}}" class="btn btn-default btn-sm">Edit</a></td>

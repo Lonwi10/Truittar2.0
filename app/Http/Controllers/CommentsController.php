@@ -29,7 +29,7 @@ class CommentsController extends Controller
             'comment' => 'required|min:5|max:2000'
         ));
         $post = Post::find($post_id);
-
+        $posts = Post::orderBy('created_at', 'desc')->get();
         $comment = new Comment();
         $comment->name = $request->name;
         $comment->email = $request->email;
@@ -39,7 +39,7 @@ class CommentsController extends Controller
         $comment->save();
 
         Session::flash('success', 'Comment was added');
-        return redirect()->route('blog.single', [$post->slug]);
+        return view('pages.welcome')->withPosts($posts);
     }
 
     /**

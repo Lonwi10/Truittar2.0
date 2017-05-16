@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Post;
 use Session;
@@ -22,7 +23,7 @@ class PostController extends Controller
     {
         // create a variable and store all the blog posts in it from the database
         // $posts = Post::all();
-        $posts = Post::orderBy('id', 'desc')->paginate(5);
+        $posts = Post::where('creator' , '=' , Auth::user()->username)->orderBy('id', 'desc')->paginate(5);
         // return a view and pass in the above variable
         return view('posts.index')->withPosts($posts);
     }
@@ -50,11 +51,13 @@ class PostController extends Controller
         // validate the data
         $this->validate($request, array(
             'body' => 'required',
-            'featured_image' => 'sometimes|image'
+            'featured_image' => 'sometimes|image',
+            'creator' => 'required'
         ));
         // store in the database
         $post = new Post;
         $post->body = Purifier::clean($request->body);
+        $post->creator = $request->creator;
 
         // save our image
         if ($request->hasFile('featured_image')) {
@@ -68,11 +71,10 @@ class PostController extends Controller
 
         $post->save();
 
-        $post->tags()->sync($request->tags, false);
 
         Session::flash('success', 'The blog post was successfully save!');
         // redirect to another page
-        return redirect()->route('posts.show');
+        return redirect('/');
     }
 
     /**
@@ -83,8 +85,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $post = Post::find($id);
         //return view('posts.show')->with('post', $post);
-        return view('welcome');
+        return view('posts.show')->withPost($post);
     }
 
     /**
@@ -96,17 +99,23 @@ class PostController extends Controller
     public function edit($id)
     {
         // find the post in the database and save as a var
+
         $post = Post::find($id);
-
         $cats = array();
-
         $tags = Tag::all();
         $tags2 = array();
         foreach ($tags as $tag) {
             $tags2[$tag->id] = $tag->name;
         }
         // return the view and pass in the var we previously created
-        return view('posts.edit')->withPost($post)->withTags($tags2);
+        if ($post->creator == Auth::user()->username){
+            return view('posts.edit')->withPost($post)->withTags($tags2);
+        }
+        else{
+            Session::flash('success','This isnt your post');
+            return redirect('/');
+        }
+
     }
 
     /**
@@ -163,12 +172,20 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        $post->tags()->detach();
-        Storage::delete($post->image);
+            $post = Post::find($id);
+        if ($post->creator == Auth::user()->username){
+            $post->tags()->detach();
+            Storage::delete($post->image);
 
-        $post->delete();
-        Session::flash('success', 'The post was successfully deleted.');
-        return redirect()->route('posts.index');
+            $post->delete();
+            Session::flash('success', 'The post was successfully deleted.');
+            return redirect()->route('posts.index');
+        }
+        else{
+            Session::flash('error','This isnt your post');
+            return redirect('/');
+        }
+        
+        
     }
 }

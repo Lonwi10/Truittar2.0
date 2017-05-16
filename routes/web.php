@@ -12,11 +12,12 @@
 */
 
 Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->where('slug', '[\w\d\-\_]+');
-Route::get('blog', 'BlogController@getIndex')->name('blog.index');
+Route::get('blog', 'BlogController@getIndex')->name('pages.welcome');
 Route::get('contact', 'PagesController@getContact');
 Route::post('contact', 'PagesController@postContact');
 Route::get('about', 'PagesController@getAbout');
 Route::get('/', 'PagesController@getIndex');
+Route::post('/', 'PagesController@getIndex');
 Route::post('comments/{post_id}', 'CommentsController@store')->name('comments.store');
 Route::get('comments/{id}/edit', 'CommentsController@edit')->name('comments.edit');
 Route::put('comments/{id}', 'CommentsController@update')->name('comments.update');

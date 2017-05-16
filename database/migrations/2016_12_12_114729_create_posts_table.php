@@ -17,6 +17,11 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->text('body');
             $table->timestamps();
+            $table->string('creator');
+        });
+
+        Schema::table('posts', function ($table) {
+            $table->foreign('creator')->references('username')->on('users')->onDelete('cascade');
         });
     }
 
@@ -27,6 +32,7 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['creator']);
         Schema::dropIfExists('posts');
     }
 }
