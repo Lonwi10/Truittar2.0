@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 use Mail;
 use Session;
 
@@ -12,7 +13,8 @@ class PagesController extends Controller
     public function getIndex() {
 
         $posts = Post::orderBy('created_at', 'desc')->get();
-        return view('pages.welcome')->withPosts($posts);
+        $users = User::all();
+        return view('pages.welcome')->withPosts($posts)->withUsers($users);
     }
     public function getAbout() {
         $first = 'Grupo';

@@ -23,6 +23,10 @@
         <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
 
       </ul>
+
+      <ul class="nav navbar-nav navbar-center">
+        <img src="{{asset('logos/icono.png')}}" height="40" width="100" class="author-name">
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
             <li class="dropdown">

@@ -4,6 +4,7 @@
 
 
 @section('content')
+
       <div class="row">
           @if (Auth::check())
           <div class="col-md-3" style="display: inline-block;" id="profile">
@@ -27,7 +28,6 @@
           </div>
 
             <div class="col-md-6" id="posts">
-            	<hr>
 		            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true)) !!}
 						        {{Form::label('body', ' ')}}
 		                {{Form::textarea('body', null, array('class' => 'form-control', 'placeholder' =>'Escribe aqui tu post...'))}}
@@ -40,6 +40,7 @@
 
 		                {{Form::submit('Create Post', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;'))}}
 		            {!! Form::close() !!}
+                <hr>
                 @foreach($posts as $post)
                     <div class="post">
                         <div class="comment">
@@ -53,7 +54,9 @@
                                 <h4>{{$post->creator}}<h4>
                                 <p class="author-time">{{date('F nS, Y - g:iA', strtotime($post->created_at))}}</p>
                               </div>
+
                               <div class="comment-content">
+                              <hr>
                               <p>{{substr(strip_tags($post->body), 0, 250)}}{{strlen(strip_tags($post->body)) > 250 ? "..." : ""}}</p>
                                 @if ($post->image && file_exists(public_path('images/'.$post->image)))
                                     <p><img src="{{asset('images/' . $post->image)}}" height="100" width="100"></p>
@@ -66,7 +69,7 @@
                           </div>
                         
                     </div>
-                    <hr>
+
                     <h4 class="comments-title"> <span class="glyphicon glyphicon-comment"></span> {{$post->comments()->count()}} Comments</h4>
                       @foreach ($post->comments as $comment)
                             <div class="comment">
@@ -86,6 +89,8 @@
                                 </div>
                             </div>
                       @endforeach
+
+
                     @if (Auth::check())
                     <div class="row">
                         <div id = "comment-form" class="col-md-8">
@@ -103,6 +108,7 @@
                             {{Form::close()}}
                         </div>
                     </div>
+                     <hr>
                   @else
                     <div class="row">
                       <div id = "comment-form" class="col-md-8 col-md-offset-2">
@@ -120,7 +126,21 @@
             </div>
 
             <div class="col-md-3" id="barraDerecha">
-
+              @foreach ($users as $user)
+                        <div class="comment">
+                            <div class="author-info">
+                              @if (file_exists(public_path('images/'.$post->creator .'.jpg')))
+                                  <img src="{{asset('images/' . $user->username.'.jpg')}}" height="50" width="50" class="author-name">
+                              @else
+                                  <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
+                              @endif
+                              <div class="author-name">
+                                <h4>{{$user->name}}</h4>
+                                <a id="btnFoll" href="{{url('blog/'.$post->id)}}"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
+                              </div>
+                            </div>
+                        </div>
+              @endforeach
             </div>
 
 

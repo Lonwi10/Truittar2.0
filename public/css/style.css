@@ -20,15 +20,17 @@ p{
 
 }
 
-.col-md-8{
-	background-color: lightblue;
-	border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-color: lightgrey;
-    border-radius: 5px;
+@media (min-width: 768px) {
+  .navbar-nav.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translatex(-50%);
+	margin-top: 10px;
+  }
+}
 
+hr{
+	border-color: lightgrey;
 }
 
 .col-md-6{
@@ -41,6 +43,14 @@ p{
     border-radius: 5px;
 }
 
+.comment{
+	border-radius: 5px;
+	background-color: #F2F2F2;
+	border: solid lightgrey;
+	padding: 10px;
+  margin-bottom: 10px;
+  min-height: 75px;
+}
 body{
 	background-color: #F2F2F2;
 }
@@ -62,14 +72,16 @@ body{
     margin-top: -20px;
   }
 
-  .btn-primary{
-    background-color: transparent;
-    color: lightgrey;
+  #btnFoll{
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    padding: 6px;
   }
-
   #btnRM{
     background-color: transparent;
     color: grey;
+
   }
   .col-md-3{
   	padding: 15px;
@@ -93,13 +105,19 @@ body{
 
   #photoProfile{
     padding: 0 !important;
+    border-radius: 5px;
+    border: solid lightgrey;
   }
 
   #info{
-    background-color: lightblue;
+    background-color: #F2F2F2;
+    border: solid lightgrey;
+    border-radius: 5px;
     position: relative;
     margin-top: 15%;
-    margin-left: -10%;
+    margin-left: -11%;
+    width: 150px;
+
   }
 
   #info h4{
