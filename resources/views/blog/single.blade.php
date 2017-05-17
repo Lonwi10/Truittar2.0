@@ -46,7 +46,26 @@
                     </div>
               @endforeach
               <hr>
+
+              <div class="row">
+                        <div id = "comment-form" class="col-md-8">
+                            {{Form::open(['route' => ['comments.store', $post->id], 'method' => 'POST'])}}
+                                        {{Form::label('name', ' ')}}
+                                        {{Form::hidden('name', Auth::user()->username, ['class' => 'form-control', 'readonly'])}}
+
+                                        {{Form::label('email', ' ')}}
+                                        {{Form::hidden('email', Auth::user()->email, ['class' => 'form-control', 'readonly'])}}
+
+                                        {{Form::label('comment', ' ')}}
+                                        {{Form::textarea('comment', null, ['class' => 'form-control','rows' => '2'])}}
+
+                                        {{Form::submit('Add Comment', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top: 15px;'])}}
+                            {{Form::close()}}
+                        </div>
+                    </div>
           </div>
+
+
       </div>
 
   

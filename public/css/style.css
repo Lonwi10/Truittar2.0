@@ -9,3 +9,100 @@ p{
 	overflow-wrap:break-word;
 }
 
+.col-md-3{
+	background-color: lightblue;
+	border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: lightgrey;
+    border-radius: 5px;
+
+}
+
+.col-md-8{
+	background-color: lightblue;
+	border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: lightgrey;
+    border-radius: 5px;
+
+}
+
+.col-md-6{
+	background-color: lightblue;
+	border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: lightgrey;
+    border-radius: 5px;
+}
+
+body{
+	background-color: #F2F2F2;
+}
+
+.container-fluid{
+	background-color: #F2F2F2;
+}
+
+.perfil{
+    float: right;
+    margin-right: 20px;
+  }
+
+  .photoProfile{
+    float: left;
+  }
+  .post .readMore{
+    text-align: right;
+    margin-top: -20px;
+  }
+
+  .btn-primary{
+    background-color: transparent;
+    color: lightgrey;
+  }
+
+  #btnRM{
+    background-color: transparent;
+    color: grey;
+  }
+  .col-md-3{
+  	padding: 15px;
+  }
+
+
+  #body{
+  	height: 60px;
+  }
+  
+
+  #posts{
+  	margin-left: 10px;
+  	margin-right: 5px;
+    background-color: lightblue
+
+  }
+  #profile{
+  	margin-left: -20px;
+  }
+
+  #photoProfile{
+    padding: 0 !important;
+  }
+
+  #info{
+    background-color: lightblue;
+    position: relative;
+    margin-top: 15%;
+    margin-left: -10%;
+  }
+
+  #info h4{
+    font-weight: bold;
+    font-size: 16px;
+  }
