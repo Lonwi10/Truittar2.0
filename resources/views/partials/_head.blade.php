@@ -9,8 +9,29 @@
 <!-- Bootstrap -->
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 {{Html::style('css/styles.css')}}
 {{Html::style('css/style.css')}}
+{{Html::style('css/pygment_trac.css')}}
+{{Html::style('ChatJs/css/jquery.chatjs.css')}}
+@include('partials._javascript')
+ <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $.chat({
+                // your user information
+                userId: 1,
+                // id of the room. The friends list is based on the room Id
+                roomId: 1,
+                // text displayed when the other user is typing
+                typingText: ' is typing...',
+                // text displayed when there's no other users in the room
+                emptyRoomText: "There's no one around here. You can still open a session in another browser and chat with yourself :)",
+                // the adapter you are using
+                chatJsContentPath: '/Chatjs/',
+                adapter: new DemoAdapter()
+            });
+        });
+    </script>
 
 @yield('stylesheets')
 

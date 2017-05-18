@@ -7,6 +7,7 @@
 <body>
     @include('partials._nav')
     <div class="container">
+    	<script src="js/scale.fix.js"></script>
         @include('partials._messages')
 
         @yield('content')
