@@ -29,7 +29,7 @@
 
             <div class="col-md-6" id="posts">
 		            {!! Form::open(array('route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true)) !!}
-						        {{Form::label('body', ' ')}}
+						{{Form::label('body', ' ')}}
 		                {{Form::textarea('body', null, array('class' => 'form-control', 'placeholder' =>'Escribe aqui tu post...'))}}
 
 		                {{Form::label('featured_image', ' ')}}
@@ -129,14 +129,14 @@
               @foreach ($users as $user)
                         <div class="comment">
                             <div class="author-info">
-                              @if (file_exists(public_path('images/'.$post->creator .'.jpg')))
+                              @if (file_exists(public_path('images/'.$user->username .'.jpg')))
                                   <img src="{{asset('images/' . $user->username.'.jpg')}}" height="50" width="50" class="author-name">
                               @else
                                   <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
                               @endif
                               <div class="author-name">
                                 <h4>{{$user->name}}</h4>
-                                <a id="btnFoll" href="{{url('blog/'.$post->id)}}"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
+                                <a id="btnFoll" href="#"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
                               </div>
                             </div>
                         </div>
