@@ -35,7 +35,7 @@
 						</div>
 						<div class="form-group">				
 							<label for="message">Mensaje</label>
-							<textarea id="message" name="message" placeholder="Enter Message"  class="form-control" rows="3"></textarea>
+							<textarea id="message" name="message" placeholder="Introduce mensaje"  class="form-control" rows="3"></textarea>
 						</div>
 						<button id="send" class="btn btn-primary" >Enviar</button>						
 					</form>
@@ -48,7 +48,7 @@
 			$(document).on("ready", function(){				
 				registerMessages();
 				$.ajaxSetup({"cache":false});
-				setInterval("loadOlMessages()", 500);
+				setInterval("loadOlMessages()", 1500);
 			});
 
 			var registerMessages = function(){
@@ -60,9 +60,10 @@
 						url: "/ChatJs/register.php",
 						data: frm
 					}).done(function(info){
-						console.log(info);
+						$("#message").val("");
 						var altura = $("#conversation").prop("scrollHeight");
 						$("#conversation").scrollTop(altura);
+						console.log(info);
 					})
 				});
 			}

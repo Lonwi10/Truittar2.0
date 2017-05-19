@@ -15,9 +15,9 @@ class Messages extends Migration
     {
          Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sender')->unique();
-            $table->string('receiver');
-            $table->string('content');
+            $table->string('envio');
+            $table->string('recibo');
+            $table->string('contentenido');
             $table->rememberToken();
             $table->timestamps();
         });

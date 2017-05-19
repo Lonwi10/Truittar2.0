@@ -1,8 +1,8 @@
 <?php
-	$bd = "truittar";
+	$bd = "twitter";
 	$server = "localhost";
 	$user = "root";
-	$password = "8wdfacejL";
+	$password = "blearuto18";
 
 	$conexion = @mysqli_connect($server, $user, $password, $bd);
 	if(!$conexion) die("Error de conexion".msqli_connect_error() );
@@ -10,7 +10,7 @@
 	$user = $_POST["user"];
 	$message = $_POST["message"];
 
-	$sql = "INSERT INTO messages (sender,content) VALUES ('$user','$message')";
+	$sql = "INSERT INTO messages (envio,contentenido) VALUES ('$user','$message')";
 	$result = mysqli_query($conexion, $sql);
 
 	if($result)
