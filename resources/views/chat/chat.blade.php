@@ -48,7 +48,7 @@
 			$(document).on("ready", function(){				
 				registerMessages();
 				$.ajaxSetup({"cache":false});
-				setInterval("loadOlMessages()", 500);
+				setInterval("loadOlMessages()", 1500);
 			});
 
 			var registerMessages = function(){

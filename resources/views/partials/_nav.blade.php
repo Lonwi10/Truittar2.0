@@ -29,8 +29,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         @if (Auth::check())
-            <li class="dropdown perfildrop">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 @if (Storage::disk('local')->has(Auth::user()->username . '.jpg'))  
                   <img src="{{ route('account.image', ['filename' => Auth::user()->username . '.jpg'])}}" width="40" height="40" alt="">
                 @else

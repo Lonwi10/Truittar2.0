@@ -127,7 +127,7 @@
 
             <div class="col-md-3" id="barraDerecha">
               @foreach ($users as $user)
-                        <div class="comment">
+                        <div class="barraDerecha">
                             <div class="author-info">
                               @if (file_exists(public_path('images/'.$user->username .'.jpg')))
                                   <img src="{{asset('images/' . $user->username.'.jpg')}}" height="50" width="50" class="author-name">
