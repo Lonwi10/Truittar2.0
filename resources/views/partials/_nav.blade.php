@@ -21,7 +21,7 @@
       <ul class="nav navbar-nav">
         <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Inicio</a></li>
         <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
-
+        <li class="{{Request::is('chat') ? "active" : ""}}"><a href="/chat">Chat</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-center">

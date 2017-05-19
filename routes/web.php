@@ -10,7 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-
+Route::get('chat', 'chatController@getChat');
 Route::get('blog/{slug}', 'BlogController@getSingle')->name('blog.single')->where('slug', '[\w\d\-\_]+');
 Route::get('blog', 'BlogController@getIndex')->name('pages.welcome');
 Route::get('contact', 'PagesController@getContact');
