@@ -64,4 +64,6 @@ class PagesController extends Controller
         Session::flash('Correcto', 'Tu mensaje ha sido enviado!');
         return redirect('/');
     }
+
+
 }

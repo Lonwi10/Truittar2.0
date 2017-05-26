@@ -136,7 +136,7 @@
                               @endif
                               <div class="author-name">
                                 <h4>{{$follower->name}}</h4>
-                                <a id="btnFoll" href="#"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
+                                <a id="btnFoll" href="{{url('follow/'.$follower->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
                               </div>
                             </div>
                         </div>

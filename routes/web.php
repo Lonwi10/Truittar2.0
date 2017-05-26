@@ -23,6 +23,7 @@ Route::get('comments/{id}/edit', 'CommentsController@edit')->name('comments.edit
 Route::put('comments/{id}', 'CommentsController@update')->name('comments.update');
 Route::delete('comments/{id}', 'CommentsController@destroy')->name('comments.destroy');
 Route::get('comments/{id}/delete', 'CommentsController@delete')->name('comments.delete');
+Route::get('/follow/{username}', 'FollowController@storeFollowers');
 
 Route::get('logout', 'Auth\LoginController@logout');
 Route::group(['middleware' => 'auth'], function() {
