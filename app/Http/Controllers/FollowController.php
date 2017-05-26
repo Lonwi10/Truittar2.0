@@ -13,5 +13,7 @@ class FollowController extends Controller
         $Follower->follower = Auth::user()->username;
         $Follower->followed = $followed;
         $Follower->save();
+
+        return redirect('/');
     }
 }

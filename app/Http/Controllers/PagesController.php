@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
+use App\Follower;
 use Mail;
 use Session;
 use Auth;
@@ -17,8 +18,9 @@ class PagesController extends Controller
         $users = User::all();
         
         if(Auth::check()){  
-            $followers = User::where('id', '!=', Auth::user()->id)->get();
-            return view('pages.welcome')->withPosts($posts)->withUsers($users)->withFollowers($followers);
+            $people = User::where('id', '!=', Auth::user()->id)->get();
+            $followers = Follower::where('follower', '=', Auth::user()->username)->get();
+            return view('pages.welcome')->withPosts($posts)->withUsers($users)->withPeople($people)->withFollowers($followers);
         }
         else{
          return view('pages.welcome')->withPosts($posts)->withUsers($users);

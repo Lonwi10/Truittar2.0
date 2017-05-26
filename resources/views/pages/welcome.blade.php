@@ -23,7 +23,13 @@
                 </div>
 
                 <div class="col-xs-12">
+                    <div class="col-md-6">
+                        <h4>Followers: </h4>
+                    </div>
 
+                    <div class="col-md-6">
+                        <h4>Followeds: </h4>
+                    </div>
                 </div>
           </div>
 
@@ -125,19 +131,30 @@
 
             </div>
             <div class="col-md-3" id="barraDerecha">
-              @foreach ($followers as $follower)
+              @foreach ($people as $person)
                         <div class="barraDerecha">
                             <div class="author-info">
 
-                              @if (file_exists(public_path('images/'.$follower->username .'.jpg')))
-                                  <img src="{{asset('images/' . $follower->username.'.jpg')}}" height="50" width="50" class="author-name">
+                              @if (file_exists(public_path('images/'.$person->username .'.jpg')))
+                                  <img src="{{asset('images/' . $person->username.'.jpg')}}" height="50" width="50" class="author-name">
                               @else
                                   <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
                               @endif
-                              <div class="author-name">
-                                <h4>{{$follower->name}}</h4>
-                                <a id="btnFoll" href="{{url('follow/'.$follower->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
-                              </div>
+                            @foreach ($followers as $follower)
+                            {{$follower}}
+                                if( $follower->followed == person->username)
+                                  <div class="author-name">
+                                    <h4>{{$person->name}}</h4>
+                                    <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Unfollow</a>
+                                  </div>
+                                else 
+                                  <div class="author-name">
+                                    <h4>{{$person->name}}</h4>
+                                    <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
+                                  </div>
+                                endif
+                            @endforeach
+                                
                             </div>
                         </div>
               
