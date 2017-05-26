@@ -112,7 +112,7 @@ class PostController extends Controller
             return view('posts.edit')->withPost($post)->withTags($tags2);
         }
         else{
-            Session::flash('success','This isnt your post');
+            Session::flash('success',"This isn't your post");
             return redirect('/');
         }
 
@@ -182,7 +182,7 @@ class PostController extends Controller
             return redirect()->route('posts.index');
         }
         else{
-            Session::flash('error','This isnt your post');
+            Session::flash('warning','This isnt your post');
             return redirect('/');
         }
         

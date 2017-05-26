@@ -64,18 +64,22 @@
                 </dl>
                 <hr>
 
-                <div class="row">
-                    <div class="col-sm-6">
-                      {!!Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block'))!!}
-                        <!--<a href="#" class="btn btn-primary btn-block">Edit</a>-->
-                    </div>
-                    <div class="col-sm-6">
-                        {!!Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE'])!!}
-                        <!--<a href="#" class="btn btn-danger btn-block">Delete</a>-->
-                        {!!Form::submit('Delete', ['class' => 'btn btn-danger btn-block'])!!}
-                        {!!Form::close()!!}
-                    </div>
-                </div>
+                @if (Auth::check())
+                    @if($post->creator == Auth::user()->username)
+                        <div class="row">
+                            <div class="col-sm-6">
+                              {!!Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block'))!!}
+                                <!--<a href="#" class="btn btn-primary btn-block">Edit</a>-->
+                            </div>
+                            <div class="col-sm-6">
+                                {!!Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE', 'onsubmit' => 'return ConfirmDelete()'])!!}
+                                <!--<a href="#" class="btn btn-danger btn-block">Delete</a>-->
+                                {!!Form::submit('Delete', ['class' => 'btn btn-danger btn-block'])!!}
+                                {!!Form::close()!!}
+                            </div>
+                        </div>
+                    @endif
+                @endif
 
                 <div class="row">
                     <div class="col-md-12">
@@ -86,5 +90,16 @@
             </div>
         </div>
     </div>
+                <script>
 
+                  function ConfirmDelete()
+                  {
+                  var x = confirm("Are you sure you want to delete?");
+                  if (x)
+                    return true;
+                  else
+                    return false;
+                  }
+
+                </script>
 @endsection

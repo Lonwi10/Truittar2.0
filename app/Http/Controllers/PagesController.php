@@ -7,6 +7,7 @@ use App\Post;
 use App\User;
 use Mail;
 use Session;
+use Auth;
 
 class PagesController extends Controller
 {
@@ -14,7 +15,14 @@ class PagesController extends Controller
 
         $posts = Post::orderBy('created_at', 'desc')->get();
         $users = User::all();
-        return view('pages.welcome')->withPosts($posts)->withUsers($users);
+        
+        if(Auth::check()){  
+            $followers = User::where('id', '!=', Auth::user()->id)->get();
+            return view('pages.welcome')->withPosts($posts)->withUsers($users)->withFollowers($followers);
+        }
+        else{
+         return view('pages.welcome')->withPosts($posts)->withUsers($users);
+        }
     }
     public function getAbout() {
         $first = 'Grupo';

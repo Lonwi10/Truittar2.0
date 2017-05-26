@@ -126,20 +126,22 @@
             </div>
 
             <div class="col-md-3" id="barraDerecha">
-              @foreach ($users as $user)
+              @foreach ($followers as $follower)
                         <div class="barraDerecha">
                             <div class="author-info">
-                              @if (file_exists(public_path('images/'.$user->username .'.jpg')))
-                                  <img src="{{asset('images/' . $user->username.'.jpg')}}" height="50" width="50" class="author-name">
+
+                              @if (file_exists(public_path('images/'.$follower->username .'.jpg')))
+                                  <img src="{{asset('images/' . $follower->username.'.jpg')}}" height="50" width="50" class="author-name">
                               @else
                                   <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
                               @endif
                               <div class="author-name">
-                                <h4>{{$user->name}}</h4>
+                                <h4>{{$follower->name}}</h4>
                                 <a id="btnFoll" href="#"><span class="glyphicon glyphicon-plus-sign"></span>Seguir</a>
                               </div>
                             </div>
                         </div>
+              
               @endforeach
             </div>
 
