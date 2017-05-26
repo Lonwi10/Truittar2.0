@@ -9,42 +9,28 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Chat</title>
+		<style type="text/css">
+  			li { color: #FF0000; padding-left:0px; }
+		</style>
 	</head>
 	<body>
 		<div  class="container-fluid">
 						
 				<div class="row">				
-					<h1 class="text-center">Chat</h1>	
+					<h1 class="text-center">Chat: <small>Publico(de momento)</small></h1>	
 					<hr>
 				</div>	
 				<div class="row">
-				<form id="" role="form">
 					<div class="col-md-3">
-						@foreach ($users as $user)
-                        <div class="barraDerecha">
-                            <div class="author-info">
-                              @if (file_exists(public_path('images/'.$user->username .'.jpg')))
-                                  <img src="{{asset('images/' . $user->username.'.jpg')}}" height="50" width="50" class="author-name">
-                              @else
-                                  <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
-                              @endif
-                              <div class="author-name">
-                                <a class="target" data-user="{{$user->name}}" href="#">{{$user->name}}</a>
-                              </div>
-                            </div>
-                        </div>
-             			@endforeach
+						<ul id="usuarios">
+	  				
+						</ul>
 					</div>
-					</form>
 					<div class="col-md-9">
 						<form id="formChat" role="form">
 							<div class="form-group">
-								<label for="user">Objetivo:</label>
-								<input type="text" class="form-control" id="target" name="target"  value="" readonly>
-							</div>
-					
-							<div class="form-group">
-								<label for="user">Yo:</label>
+								<label for="user">Usuario</label>
+
 								<input type="text" class="form-control" id="user" name="user"  value="{{Auth::user()->username}}" readonly>
 							</div>
 							<div class="form-group">							
@@ -73,11 +59,7 @@
 			$(document).on("ready", function(){				
 				registerMessages();
 				$.ajaxSetup({"cache":false});
-				setInterval("loadOlMessages()", 1500);
-
-				$(".target").click(function(){
-					$("#formChat input[name=target]").val($(this).data("user"));
-				});
+				setInterval("cargarUsuarios()", 1500);
 			});
 
 			var registerMessages = function(){
@@ -97,11 +79,9 @@
 				});
 			}
 			var loadOlMessages = function(){
-				var frm = $("#formChat").serialize();
 				$.ajax({
 					type: "POST",
 					url: "/ChatJs/conversation.php",
-					data: frm
 				}).done(function(info){
 					console.log(info);
 					$("#conversation").html( info );
@@ -109,6 +89,16 @@
 																			"padding-botton":"20px"});
 					var altura = $("#conversation").prop("scrollHeight");
 					$("#conversation").scrollTop(altura);
+				})
+			}
+			var cargarUsuarios = function(){
+				$.ajax({
+					type: "POST",
+					url: "/ChatJs/leerContactos.php",
+				}).done(function(info){
+					console.log(info);
+					$("#usuarios").html( info );
+			
 				})
 			}
 		</script>
