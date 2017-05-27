@@ -140,20 +140,10 @@
                               @else
                                   <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
                               @endif
-                            @foreach ($followers as $follower)
-                            {{$follower}}
-                                if( $follower->followed == person->username)
-                                  <div class="author-name">
-                                    <h4>{{$person->name}}</h4>
-                                    <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Unfollow</a>
-                                  </div>
-                                else 
-                                  <div class="author-name">
-                                    <h4>{{$person->name}}</h4>
+                              <div class="author-name">
+                                <h4>{{$person->name}}</h4>
                                     <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
                                   </div>
-                                endif
-                            @endforeach
                                 
                             </div>
                         </div>

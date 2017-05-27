@@ -1,8 +1,8 @@
 <?php
-	$bd = "twitter";
+	$bd = "truittar";
 	$server = "localhost";
 	$user = "root";
-	$password = "blearuto18";
+	$password = "Lol123-321";
 
 	$conexion = @mysqli_connect($server, $user, $password, $bd);
 	if(!$conexion) die("Error de conexion".msqli_connect_error() );

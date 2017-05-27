@@ -11,9 +11,20 @@ $ composer install
 
 $ cp .env.example .env
 
+
+ 
 $ php artisan key:generate Modificar .env:
 
-DB_CONNECTION=mysql DB_DATABASE=LeagueOfLegends DB_USERNAME=root DB_PASSWORD=tucontraseña
+DB_CONNECTION=mysql DB_DATABASE=truittar DB_USERNAME=root DB_PASSWORD=tucontraseña
+
+
+Bajamos hasta abajo que salga la parte de mailtrap y colocaremos lo siguiente:
+	MAIL_DRIVER=smtp
+	MAIL_HOST=smtp.mailtrap.io
+	MAIL_PORT=2525
+	MAIL_USERNAME=5ad7a8c82b426f
+	MAIL_PASSWORD=949dc29923caa6
+
 
 Migrar la base de datos y poner en marcha:
 

@@ -45,7 +45,7 @@
 					
 							<div class="form-group">
 								<label for="user">Yo:</label>
-								<input type="text" class="form-control" id="user" name="user"  value="{{Auth::user()->username}}" readonly>
+								<input type="text" class="form-control" id="user" name="user"  value="{{Auth::user()->name}}" readonly>
 							</div>
 							<div class="form-group">							
 								<div class="row">
