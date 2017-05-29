@@ -147,7 +147,7 @@
                                 @else
                                   @foreach ($followers as $follower)
                                     @if($person->username == $follower->followed)
-                                      <a id="btnFoll" href="{{url('unfollow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Unfollow</a>
+                                      <a id="btnFoll" href="{{url('unfollow/'.$person->username)}}"><span class="glyphicon glyphicon-minus-sign"></span>Unfollow</a>
                                     @else
                                       <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
                                     @endif
