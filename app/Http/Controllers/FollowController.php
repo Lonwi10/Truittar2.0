@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Follower;
+use Session;
 
 class FollowController extends Controller
 {
@@ -14,6 +15,13 @@ class FollowController extends Controller
         $Follower->followed = $followed;
         $Follower->save();
 
+        return redirect('/');
+    }
+
+    public function deleteFollowers($usuario){
+    	$Follower = Follower::where('follower', Auth::user()->username)->where('followed', $usuario);
+        $Follower->delete();
+        Session::flash('success', 'Unfollowed!');
         return redirect('/');
     }
 }

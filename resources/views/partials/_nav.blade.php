@@ -41,7 +41,6 @@
                 <li><a href="{{route('account')}}">Perfil</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="{{route('posts.index')}}">Post</a></li>
-                <li><a href="{{route('tags.index')}}">Hashtags</a></li>
 
                 <li role="separator" class="divider"></li>
                 <li><a href="{{route('logout')}}">Desconectarte</a></li>

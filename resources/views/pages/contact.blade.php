@@ -11,7 +11,7 @@
                     {{csrf_field()}}
                     <div class="form-group">
                         <label name="email">Email:</label>
-                        <input id ="email" name="email" class="form-control">
+                        <input id ="email" name="email" value="{{Auth::user()->email}}" class="form-control" readonly>
                     </div>
 
                     <div class="form-group">

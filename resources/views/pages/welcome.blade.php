@@ -24,11 +24,11 @@
 
                 <div class="col-xs-12">
                     <div class="col-md-6">
-                        <h4>Followers: </h4>
+                        <h4>Followers: {{$followers->count()}}</h4>
                     </div>
 
                     <div class="col-md-6">
-                        <h4>Followeds: </h4>
+                        <h4>Followeds: {{$followeds->count()}}</h4>
                     </div>
                 </div>
           </div>
@@ -142,9 +142,19 @@
                               @endif
                               <div class="author-name">
                                 <h4>{{$person->name}}</h4>
-                                    <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
-                                  </div>
-                                
+                                @if($followers->count()==0)
+                                  <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
+                                @else
+                                  @foreach ($followers as $follower)
+                                    @if($person->username == $follower->followed)
+                                      <a id="btnFoll" href="{{url('unfollow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Unfollow</a>
+                                    @else
+                                      <a id="btnFoll" href="{{url('follow/'.$person->username)}}"><span class="glyphicon glyphicon-plus-sign"></span>Follow</a>
+                                    @endif
+                                  @endforeach
+                                @endif
+
+                              </div>
                             </div>
                         </div>
               

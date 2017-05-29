@@ -20,7 +20,8 @@ class PagesController extends Controller
         if(Auth::check()){  
             $people = User::where('id', '!=', Auth::user()->id)->get();
             $followers = Follower::where('follower', '=', Auth::user()->username)->get();
-            return view('pages.welcome')->withPosts($posts)->withUsers($users)->withPeople($people)->withFollowers($followers);
+            $followeds = Follower::where('followed', '=', Auth::user()->username)->get();
+            return view('pages.welcome')->withPosts($posts)->withUsers($users)->withPeople($people)->withFollowers($followers)->withFolloweds($followeds);
         }
         else{
          return view('pages.welcome')->withPosts($posts)->withUsers($users);
@@ -39,7 +40,8 @@ class PagesController extends Controller
         return view('pages.about')->withData($data);
     }
     public function getContact() {
-        return view('pages.contact');
+        $users = User::all();
+        return view('pages.contact')->withUsers($users);
     }
 
     public function postContact(Request $request) {
