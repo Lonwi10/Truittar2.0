@@ -2,7 +2,7 @@
 	$bd = "truittar";
 	$server = "localhost";
 	$user = "root";
-	$password = "8wdfacejL";
+	$password = "Lol123-321";
 
 	$conexion = @mysqli_connect($server, $user, $password, $bd);
 	if(!$conexion) die("Error de conexion".msqli_connect_error() );
