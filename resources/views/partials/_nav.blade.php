@@ -15,9 +15,9 @@
       <a class="navbar-brand" href="/">Truittar</a>
 
     </div>
-
+@if (Auth::check())
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   
       <ul class="nav navbar-nav">
         <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Inicio</a></li>
         <li class="{{Request::is('contact') ? "active" : ""}}"><a href="/contact">Contact</a></li>
@@ -28,7 +28,7 @@
         <img src="{{asset('logos/icono.png')}}" height="40" width="100" class="author-name">
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        @if (Auth::check())
+        
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 @if (Storage::disk('local')->has(Auth::user()->username . '.jpg'))  
@@ -47,11 +47,15 @@
               </ul>
             </li>
         @else
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-
-              <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Entrar</a></li>
-              <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Registrarte</a></li>
+              <li class="{{Request::is('/') ? "active" : ""}}"><a href="/">Inicio</a></li>
             </ul>
+             <ul class="nav navbar-nav navbar-right">
+                <li class="{{Request::is('login') ? "active" : ""}}"><a href="{{route('login')}}">Entrar</a></li>
+                <li class="{{Request::is('register') ? "active" : ""}}"><a href="{{route('register')}}">Registrarte</a></li>
+             </ul>
+          </div>
         @endif
 
       </ul>

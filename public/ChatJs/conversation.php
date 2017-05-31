@@ -2,7 +2,7 @@
 	$bd = "truittar";
 	$server = "localhost";
 	$user = "root";
-	$password = "Lol123-321";
+	$password = "8wdfacejL";
 	$user1 = $_POST["user"];
 	$user2 = $_POST["target"];
 

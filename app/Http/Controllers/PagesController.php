@@ -40,8 +40,14 @@ class PagesController extends Controller
         return view('pages.about')->withData($data);
     }
     public function getContact() {
-        $users = User::all();
-        return view('pages.contact')->withUsers($users);
+        if(Auth::check()){
+            $users = User::all();
+            return view('pages.contact')->withUsers($users);
+        }
+        else{
+            Session::flash('warning','You are not logged in');
+            return redirect('/');
+        }
     }
 
     public function postContact(Request $request) {

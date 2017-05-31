@@ -25,6 +25,7 @@ class CreateCommentsTable extends Migration
 
         Schema::table('comments', function($table){
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('name')->references('username')->on('users')->onDelete('cascade');
         });
     }
 
@@ -35,6 +36,7 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
+        Schema::dropForeign(['name']);
         Schema::dropForeign(['post_id']);
         Schema::dropIfExists('comments');
     }

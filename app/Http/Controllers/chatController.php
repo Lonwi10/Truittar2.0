@@ -11,9 +11,14 @@ use Auth;
 class chatController extends Controller
 {
     public function getChat(){
-    	
-    	$users = User::where('id', '!=', Auth::user()->id)->get();
-    	return view('chat.chat')->withUsers($users);
+    	if(Auth::check()){
+	    	$users = User::where('id', '!=', Auth::user()->id)->get();
+	    	return view('chat.chat')->withUsers($users);
+	    }
+	    else{
+	    	Session::flash('warning','You are not logged in');
+	    	return redirect('/');
+	    }
     
     }
 }

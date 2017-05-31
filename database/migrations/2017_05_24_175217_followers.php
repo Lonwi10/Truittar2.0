@@ -16,7 +16,7 @@ class Followers extends Migration
         Schema::create('followers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('follower');
-            $table->string('followed')->unique();
+            $table->string('followed');
             $table->timestamps();
         });
         Schema::table('followers', function($table){

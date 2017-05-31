@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
+use App\Follower;
 use Session;
+use Auth;
 
 class CommentsController extends Controller
 {
@@ -28,6 +30,8 @@ class CommentsController extends Controller
             'email' => 'required|email|max:255',
             'comment' => 'required|min:5|max:2000'
         ));
+        $followers = Follower::where('follower', '=', Auth::user()->username)->get();
+        $followeds = Follower::where('followed', '=', Auth::user()->username)->get();
         $post = Post::find($post_id);
         $posts = Post::orderBy('created_at', 'desc')->get();
         $comment = new Comment();
@@ -39,7 +43,9 @@ class CommentsController extends Controller
         $comment->save();
 
         Session::flash('success', 'Comment was added');
-        return view('pages.welcome')->withPosts($posts);
+        return redirect()->action(
+            'PagesController@getIndex'
+            );
     }
 
     /**
@@ -51,7 +57,13 @@ class CommentsController extends Controller
     public function edit($id)
     {
           $comment = Comment::find($id);
-          return view('comments.edit')->withComment($comment);
+          if ($comment->name == Auth::user()->username){
+            return view('comments.edit')->withComment($comment);
+        }
+        else{
+            Session::flash('warning', "This isn't your comment");
+            return redirect('/');
+        }
     }
 
     /**
@@ -64,12 +76,19 @@ class CommentsController extends Controller
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
-        $this->validate($request, array('comment' => 'required'));
-        $comment->comment = $request->comment;
-        $comment->save();
+        if ($comment->name == Auth::user()->username){
+            $this->validate($request, array('comment' => 'required'));
+            $comment->comment = $request->comment;
+            $comment->save();
 
-        Session::flash('success', 'Comment updated');
-        return redirect()->route('posts.show', $comment->post->id);
+            Session::flash('success', 'Comment updated');
+            return redirect('/');
+        }
+        else{
+            Session::flash('warning', "This isn't your comment");
+            return view('/');
+
+        }
     }
 
     public function delete($id)
@@ -87,9 +106,15 @@ class CommentsController extends Controller
     public function destroy($id)
     {
         $comment = Comment::find($id);
-        $post_id = $comment->post->id;
-        $comment->delete();
-        Session::flash('success', 'Deleted Comment!');
-        return redirect()->route('posts.show', $post_id);
+        if ($comment->name == Auth::user()->username){
+            $post_id = $comment->post->id;
+            $comment->delete();
+            Session::flash('success', 'Deleted Comment!');
+            return redirect('/');
+        }
+        else{
+            Session::flash('warning', "This isn't your comment");
+            return redirect('/');
+        }
     }
 }

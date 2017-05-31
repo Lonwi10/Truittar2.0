@@ -29,24 +29,27 @@
                                   <img src="{{asset('images/' . 'guest.jpg')}}" height="50" width="50" class="author-name">
                               @endif
                               <div class="author-name">
-                                <a class="target" data-user="{{$user->name}}" href="#">{{$user->name}}</a>
+                                <a class="target" data-user="{{$user->username}}" href="#">{{$user->name}}</a>
                               </div>
                             </div>
                         </div>
              			@endforeach
 					</div>
 					</form>
+
 					<div class="col-md-9">
+					
 						<form id="formChat" role="form">
 							<div class="form-group">
 								<label for="user">Objetivo:</label>
-								<input type="text" class="form-control" id="target" name="target"  value="" readonly>
+								<input type="text" class="form-control" id="target" name="target" value="" readonly>
 							</div>
 					
 							<div class="form-group">
 								<label for="user">Yo:</label>
-								<input type="text" class="form-control" id="user" name="user"  value="{{Auth::user()->name}}" readonly>
+								<input type="text" class="form-control" id="user" name="user"  value="{{Auth::user()->username}}" readonly>
 							</div>
+							
 							<div class="form-group">							
 								<div class="row">
 									<div class="col-md-12" >

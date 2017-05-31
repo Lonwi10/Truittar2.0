@@ -101,19 +101,21 @@ class PostController extends Controller
         // find the post in the database and save as a var
 
         $post = Post::find($id);
-        $cats = array();
-        $tags = Tag::all();
-        $tags2 = array();
-        foreach ($tags as $tag) {
-            $tags2[$tag->id] = $tag->name;
-        }
-        // return the view and pass in the var we previously created
         if ($post->creator == Auth::user()->username){
-            return view('posts.edit')->withPost($post)->withTags($tags2);
-        }
-        else{
-            Session::flash('success',"This isn't your post");
-            return redirect('/');
+            $cats = array();
+            $tags = Tag::all();
+            $tags2 = array();
+            foreach ($tags as $tag) {
+                $tags2[$tag->id] = $tag->name;
+            }
+            // return the view and pass in the var we previously created
+            if ($post->creator == Auth::user()->username){
+                return view('posts.edit')->withPost($post)->withTags($tags2);
+            }
+            else{
+                Session::flash('success',"This isn't your post");
+                return redirect('/');
+            }
         }
 
     }
@@ -129,29 +131,35 @@ class PostController extends Controller
     {
         // Validate the data
         $post = Post::find($id);
+        if ($post->creator == Auth::user()->username){
+            $this->validate($request, array(
+                'body' => 'required',
+                'featured_image' => 'image'
+            ));
 
-        $this->validate($request, array(
-            'body' => 'required',
-            'featured_image' => 'image'
-        ));
+            // Save the data to the database
+            $post = Post::find($id);
+            $post->body = Purifier::clean($request->input('body'));
 
-        // Save the data to the database
-        $post = Post::find($id);
-        $post->body = Purifier::clean($request->input('body'));
-
-        if ($request->hasFile('featured_image')) {
-            // add the new photo
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' . $filename);
-            Image::make($image)->resize(600, 400)->save($location);
-            $oldFilename = $post->image;
-            // update the database
-            $post->image = $filename;
-            // Delete the old photo
-            Storage::delete($oldFilename);
+            if ($request->hasFile('featured_image')) {
+                // add the new photo
+                $image = $request->file('featured_image');
+                $filename = time() . '.' . $image->getClientOriginalExtension();
+                $location = public_path('images/' . $filename);
+                Image::make($image)->resize(600, 400)->save($location);
+                $oldFilename = $post->image;
+                // update the database
+                $post->image = $filename;
+                // Delete the old photo
+                Storage::delete($oldFilename);
+            }
+            $post->save();
         }
-        $post->save();
+
+        else{
+            Session::flash('warning', "This isn't your post");
+            return redirect('/');
+        }
 
         if (isset($request->tags)) {
             $post->tags()->sync($request->tags);
@@ -179,7 +187,7 @@ class PostController extends Controller
 
             $post->delete();
             Session::flash('success', 'The post was successfully deleted.');
-            return redirect()->route('posts.index');
+            return redirect('/');
         }
         else{
             Session::flash('warning','This isnt your post');
